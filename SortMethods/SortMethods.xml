@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SortMethods</name>
+    </assembly>
+    <members>
+        <member name="T:SortMethods.Sorting">
+            <summary>
+            Class used to test different sorting methods
+            </summary>
+        </member>
+        <member name="M:SortMethods.Sorting.MergeSorting(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Merge sorting: cut the list in smaller lists, sort it and merge it
+            </summary>
+            <param name="list">The list to sort.</param>
+            <returns>A sorted list</returns>
+            <example> 
+            Use: 
+            <code> 
+              List&lt;int&gt; list = new List&lt;int&gt;() { 3, 1, 5, 2, 7 };
+              List&lt;int&gt; sortedList = Sorting.MergeSorting(list);
+            </code>
+            Steps:<br />
+            <code>
+            MergeSorting([3, 1, 5, 2, 7]);
+            //[3, 1, 5][2, 7]
+                MergeSorting([3, 1, 5]);
+                //[3, 1][5]
+                    MergeSorting([3, 1]);
+                    //[3][1]
+                        MergeSorting([3]);
+                        //[3]
+                        MergeSorting([1]);
+                        //[1]
+                        Merge([3], [1]);
+                        //[1, 3]
+                    MergeSorting([5]);
+                    //[5]
+                    Merge([1, 3], [5]);
+                    //[1, 3, 5]
+                MergeSorting([2, 7]);
+                //[2][7]
+                    MergeSorting([2]);
+                    //[2]
+                    MergeSorting([7]);
+                    //[7]
+                    Merge([2], [7]);
+                    //[2, 7]
+                Merge([1, 3, 5], [2, 7]);
+                //[1, 2, 3, 5, 7]
+            </code>
+            test<br />
+            <pre>  2 spaces</pre>
+            <pre>    4 spaces</pre>
+            </example>
+        </member>
+        <member name="M:SortMethods.Sorting.Merge(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Merge two list in one ordering them
+            </summary>
+            <param name="left">left list to merge</param>
+            <param name="right">right list to merge</param>
+            <returns>The two list merged and sorted</returns>
+        </member>
+        <member name="M:SortMethods.Program.PrintList``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Print a list as follow : "1, 2, 3, 4, 5"
+            </summary>
+            <typeparam name="T">The type of the list to print</typeparam>
+            <param name="list">The list to print to the console</param>
+        </member>
+    </members>
+</doc>
