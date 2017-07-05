@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\ClassWithInterface.cs" />
+    <Compile Include="Interface\TestInterface.cs" />
     <Compile Include="StructVSClass\OneClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

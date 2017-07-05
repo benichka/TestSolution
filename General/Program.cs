@@ -1,9 +1,21 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 
 namespace General
 {
-    class StructVSClassProgram
+    class Program
     {
+        struct TestStruct
+        {
+            public string myField;
+
+            public void testMethod()
+            {
+
+            }
+        }
+
         static void Main(string[] args)
         {
             #region working on value type
@@ -45,6 +57,17 @@ namespace General
             #endregion working on reference type
 
             #region struc vs class
+            var myStruct = new TestStruct()
+            {
+                myField = "toto"
+            };
+
+            ArrayList myArrayList = new ArrayList();
+            myArrayList.Add(myStruct);
+
+            // Pas possible
+            //TestStruct? myStructCasted = myArrayList[0] as TestStruct;
+
             /*
             Structures.MyStruct1 struct1 = new Structures.MyStruct1();
             struct1.MyProperty1 = 1;
