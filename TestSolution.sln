@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "Linq\Linq.csproj", "{64AAD4BF-A968-497A-BB6B-45D6CA8E2BCE}"
 EndProject
@@ -12,6 +12,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringOperation", "StringOperation\StringOperation.csproj", "{59DFBB9E-6BD5-46C0-B822-72E377B96AF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortMethods", "SortMethods\SortMethods.csproj", "{769DB863-162D-4ADE-9486-6A5E034ADAC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateManipulation", "DateManipulation\DateManipulation.csproj", "{B8E5F9D4-B500-42B5-BEF5-3D0A7E343ABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Default", "Default\Default.csproj", "{BF014105-F93A-4EB3-BEA2-48F7884D4E05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inheritance", "Inheritance\Inheritance.csproj", "{8236D4BB-A6DA-419D-9787-724D9F21EC4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectToTest", "ProjectToTest\ProjectToTest.csproj", "{42FAEE5D-773E-4BCC-BC26-5C42AD3B8AF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectToTest_Test", "ProjectToTest_Test\ProjectToTest_Test.csproj", "{34778295-D981-42E5-9D27-C97D4322BA9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singleton", "Singleton\Singleton.csproj", "{D0154987-A54A-4755-BDAC-CA56A8005922}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +51,30 @@ Global
 		{769DB863-162D-4ADE-9486-6A5E034ADAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{769DB863-162D-4ADE-9486-6A5E034ADAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{769DB863-162D-4ADE-9486-6A5E034ADAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8E5F9D4-B500-42B5-BEF5-3D0A7E343ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E5F9D4-B500-42B5-BEF5-3D0A7E343ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E5F9D4-B500-42B5-BEF5-3D0A7E343ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E5F9D4-B500-42B5-BEF5-3D0A7E343ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF014105-F93A-4EB3-BEA2-48F7884D4E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF014105-F93A-4EB3-BEA2-48F7884D4E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF014105-F93A-4EB3-BEA2-48F7884D4E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF014105-F93A-4EB3-BEA2-48F7884D4E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8236D4BB-A6DA-419D-9787-724D9F21EC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8236D4BB-A6DA-419D-9787-724D9F21EC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8236D4BB-A6DA-419D-9787-724D9F21EC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8236D4BB-A6DA-419D-9787-724D9F21EC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42FAEE5D-773E-4BCC-BC26-5C42AD3B8AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42FAEE5D-773E-4BCC-BC26-5C42AD3B8AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42FAEE5D-773E-4BCC-BC26-5C42AD3B8AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42FAEE5D-773E-4BCC-BC26-5C42AD3B8AF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34778295-D981-42E5-9D27-C97D4322BA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34778295-D981-42E5-9D27-C97D4322BA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34778295-D981-42E5-9D27-C97D4322BA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34778295-D981-42E5-9D27-C97D4322BA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0154987-A54A-4755-BDAC-CA56A8005922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0154987-A54A-4755-BDAC-CA56A8005922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0154987-A54A-4755-BDAC-CA56A8005922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0154987-A54A-4755-BDAC-CA56A8005922}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
