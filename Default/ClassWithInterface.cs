@@ -46,4 +46,3 @@ namespace Default
         // Other non-interface members.
     }
 }
-}
