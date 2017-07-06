@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
@@ -14,6 +15,10 @@ namespace StringOperation
     {
         static unsafe void Main(string[] args)
         {
+            // "Éclatement" d'un string
+            var s = "toto";
+            var v = s.ToList();
+
             var s1 = "toto";
 
             var myInstanceSC = new StringClass();
