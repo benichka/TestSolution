@@ -2,6 +2,9 @@
 
 namespace InheritanceSimple
 {
+    /// <summary>
+    /// An abstract class
+    /// </summary>
     abstract class MyAbstract
     {
         public abstract void MyAbstractMethod(string value);
