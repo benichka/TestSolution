@@ -1,6 +1,8 @@
-﻿using System;
+﻿using General.Interface;
+using System;
 using System.Collections;
 using System.Linq;
+using System.IO;
 
 namespace General
 {
@@ -18,6 +20,9 @@ namespace General
 
         static void Main(string[] args)
         {
+            // Pas possible d'instancier une interface
+            //var myInterfaceInstance = new TestInterface();
+
             #region working on value type
             int myInt1 = 2;
             int myInt2 = 2;
@@ -97,6 +102,65 @@ namespace General
             Console.WriteLine($"container.MyStruct1.MyProperty1: {container.MyStruct1.MyProperty1}");
             */
             #endregion
+
+            #region casting simple
+            string myString = "123";
+            int myInt = 2;
+
+            // Impossible d'un type "trop éloigné" d'un autre
+            //int myOtherInt = (int)myString;
+
+            int myOtherInt = Convert.ToInt32(myString);
+            #endregion casting simple
+
+            #region basic LINQ Query
+            /*
+            // Create a new Hashtable and add some drinks with prices.
+            Hashtable prices = new Hashtable
+            {
+                { "Café au Lait", 1.99M },
+                { "Caffe Americano", 1.89M },
+                { "Café Mocha", 2.99M },
+                { "Cappuccino", 2.49M },
+                { "Espresso", 1.49M },
+                { "Espresso Romano", 1.59M },
+                { "English Tea", 1.69M },
+                { "Juice", 2.89M }
+            };
+
+            // Select all the drinks that cost less than $2.00, and order them by cost.
+            var bargains =
+               from string drink in prices.Keys
+               where (Decimal)prices[drink] < 2.00M
+               orderby prices[drink] ascending
+               select drink;
+            // Display the results.
+            foreach (string bargain in bargains)
+            {
+                Console.WriteLine(bargain);
+            }
+            Console.ReadLine();
+            */
+            #endregion basic LINQ Query
+
+            #region file manipulation
+            Console.WriteLine("--------------- file manipulation ---------------");
+            File.Delete("myFile.txt");
+
+            FileInfo fileInfo = new FileInfo("myFile.txt"); // non-existent file
+            Console.WriteLine(fileInfo.Exists);             // false
+            File.Create("myFile.txt");
+            Console.WriteLine(File.Exists("myFile.txt"));   // true
+            Console.WriteLine(fileInfo.Exists);             // false -> it's "cached"
+            fileInfo.Refresh();
+            Console.WriteLine(fileInfo.Exists);             // true -> this time, refreshed!
+
+            // Access to the temporary folder of the user
+            var tmpPath = Path.GetTempPath();
+
+            // Create a temporary file
+            var tmpFile = Path.GetTempFileName();
+            #endregion file manipulation
         }
 
         static void OperateOnString(string myString)
