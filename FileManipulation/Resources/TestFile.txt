@@ -1,0 +1,4 @@
+I want to be written in a file and I've got special chars: é è ë ç ¤¡²³¤€¼½¾‘
+line 2
+line 3
+line 4
