@@ -57,6 +57,21 @@ namespace Serialize
                 dataContractSer.WriteObject(buffer, nameDataContract);
             }
 
+            // serialize to memory
+            using (var buffer = new MemoryStream())
+            {
+                dataContractSer.WriteObject(buffer, nameDataContract);
+
+                // Show the JSON output
+                buffer.Position = 0;
+
+                using (StreamReader sr = new StreamReader(buffer))
+                {
+                    Console.Write("JSON form of Person object: ");
+                    Console.WriteLine(sr.ReadToEnd());
+                }
+            }
+
             // deserialize from a file
             using (FileStream buffer = File.OpenRead(@"D:\temp\jsonDataContractName.txt"))
             {

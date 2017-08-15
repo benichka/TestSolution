@@ -30,6 +30,12 @@ namespace CertificationTraining
 
             var result = evaluator.IsMatch(inputData);
             #endregion question 22
+
+            #region question 31
+            var bookUser = new BookUser("John");
+            bookUser.Add("Getting to yes");
+            bookUser.Add("Influence");
+            #endregion question 31
         }
     }
 
@@ -79,4 +85,47 @@ namespace CertificationTraining
         }
     }
     #endregion question 20
+
+    #region question 31
+    public delegate void AddBookCallback(int i);
+
+    public class Book
+    {
+        public string Name { get; set; }
+
+        public Book(string name)
+        {
+            Name = name;
+        }
+    }
+
+    public class BookTracker
+    {
+        List<Book> books = new List<Book>();
+
+        public void AddBook(string name, AddBookCallback callback)
+        {
+            books.Add(new Book(name));
+            callback(books.Count);
+        }
+    }
+
+    public class BookUser
+    {
+        public string UserName { get; set; }
+
+        public BookUser(string userName)
+        {
+            UserName = userName;
+        }
+
+        BookTracker tracker = new BookTracker();
+
+        // Add a book to the user
+        public void Add(string name)
+        {
+            tracker.AddBook(name, delegate (int i) { Console.WriteLine($"User {UserName} has now {i} books"); });
+        }
+    }
+    #endregion question 31
 }
