@@ -8,16 +8,6 @@ namespace General
 {
     class Program
     {
-        struct TestStruct
-        {
-            public string myField;
-
-            public void testMethod()
-            {
-
-            }
-        }
-
         static void Main(string[] args)
         {
             // Pas possible d'instancier une interface
