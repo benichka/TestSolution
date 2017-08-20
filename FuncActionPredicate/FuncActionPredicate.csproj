@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{562716BD-B006-465F-AF19-9FD24C659D50}</ProjectGuid>
+    <ProjectGuid>{47C73F12-2D34-4CF5-8D3F-F1D6D9036032}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CertificationTraining</RootNamespace>
-    <AssemblyName>CertificationTraining</AssemblyName>
+    <RootNamespace>FuncActionPredicate</RootNamespace>
+    <AssemblyName>FuncActionPredicate</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,7 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
