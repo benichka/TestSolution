@@ -311,6 +311,31 @@ namespace CertificationTraining
             var hashedFileAnswerC = GetHashAnswerC(@"D:\temp\test.test", "SHA256");
             var AnswerCHashAsString = BitConverter.ToString(hashedFileAnswerD);
             #endregion question 135
+
+            #region question 154
+            void ProcessTask()
+            {
+                Task[] tasks = new Task[3]
+                {
+                    Task.Factory.StartNew(() => Console.WriteLine("task 1")),
+                    Task.Factory.StartNew(() => Console.WriteLine("task 2")),
+                    Task.Factory.StartNew(() => Console.WriteLine("task 3"))
+                };
+
+                // WaitFor doesn't exist for the static class Task
+                //Task.WaitFor(3);
+
+                // Yield doesn't exist. It exists for the static class Task but not for that use case
+                //tasks.Yield();
+
+                // WaitForCompletion doesn't exist, even for the static class Task
+                //tasks.WaitForCompletion();
+
+                Task.WaitAll(tasks);
+            }
+
+            ProcessTask();
+            #endregion question 154
         }
     }
 
