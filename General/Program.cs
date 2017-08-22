@@ -3,21 +3,13 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.IO;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace General
 {
     class Program
     {
-        struct TestStruct
-        {
-            public string myField;
-
-            public void testMethod()
-            {
-
-            }
-        }
-
         static void Main(string[] args)
         {
             // Pas possible d'instancier une interface

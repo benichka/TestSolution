@@ -43,8 +43,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFTest", "WPFTest\WPFTest.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManipulation", "FileManipulation\FileManipulation.csproj", "{7EE1D5BB-5EFE-4A96-8064-638B89D5925F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOlivier", "TestOlivier\TestOlivier.csproj", "{A67346D4-637E-4DC0-BF6A-869C7D4F0ABB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,10 +129,6 @@ Global
 		{7EE1D5BB-5EFE-4A96-8064-638B89D5925F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EE1D5BB-5EFE-4A96-8064-638B89D5925F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EE1D5BB-5EFE-4A96-8064-638B89D5925F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A67346D4-637E-4DC0-BF6A-869C7D4F0ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A67346D4-637E-4DC0-BF6A-869C7D4F0ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A67346D4-637E-4DC0-BF6A-869C7D4F0ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A67346D4-637E-4DC0-BF6A-869C7D4F0ABB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
