@@ -2,7 +2,9 @@
 using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Dynamic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace CertificationTraining
 {
@@ -336,6 +339,137 @@ namespace CertificationTraining
 
             ProcessTask();
             #endregion question 154
+
+            #region question 166
+            decimal[] loanAmounts = { 303m, 1000m, 85579m, 501,51m, 1200m, 400m, 22m };
+
+            // Good answer
+            IEnumerable<decimal> query = from amount in loanAmounts
+                                         where amount % 2 == 0
+                                         orderby amount ascending
+                                         select amount;
+
+            // Wrong answer
+            //IEnumerable<decimal> query = from amount in loanAmounts
+            //                             where amount % 2 == 0
+            //                             ascending amount orderby
+            //                             select amount;
+            #endregion question 166
+
+            #region question 184
+            // See https://msdn.microsoft.com/en-us/library/w4hkze5k(v=vs.110)
+
+            var myString1 = "toto";
+            var myString2 = "toto";
+
+            // Returns true because:
+            // - first check – same reference: no;
+            // - second check – both object are null: no;
+            // - last check – myString1.Equals(myString2) -> yes!
+            var areEquals = Object.Equals(myString1, myString2);
+
+            // Special treatment for string... Returns true!
+            // see : https://msdn.microsoft.com/en-us/library/system.object.referenceequals(v=vs.110)
+            // see : https://msdn.microsoft.com/en-us/library/system.string.isinterned(v=vs.110)
+            // tl;dr: string are "interned", so multiple instance with same text point to the same reference
+            var areRefEquals1 = Object.ReferenceEquals(myString1, myString2);
+
+            var myString1Plus = "toto" + myString1;
+            var myString2Plus = "toto" + myString1;
+
+            // This time, strings are not interned -> returns false
+            var areRefEquals2 = Object.ReferenceEquals(myString1Plus, myString2Plus);
+
+            var myString3 = myString1;
+            // Returns true
+            var areRefEquals3 = Object.ReferenceEquals(myString1, myString3);
+
+            var myString4 = myString1Plus;
+            // Also returns true -> string are reference type so the reference is copied
+            var areRefEquals4 = Object.ReferenceEquals(myString1Plus, myString4);
+
+            var myString5 = myString1Plus + "";
+            // Also returns true...
+            var areRefEquals5 = Object.ReferenceEquals(myString1Plus, myString5);
+
+            var myString6 = "toto2";
+            myString6 = myString6.Substring(0, 4);
+            // returns false! String are immutable so another instance of string is created
+            // when myString6 changes value
+            var areRefEquals6 = Object.ReferenceEquals(myString1, myString6);
+
+            var myString7 = "toto";
+            // At the point, Object.ReferenceEquals(myString1, myString7) returns true
+            myString7 = myString7 + "a";
+            // Another string is instanciated, so Object.ReferenceEquals(myString1, myString7) is false
+            myString7 = myString7.Substring(0, 4);
+            // false!
+            var areRefEquals7 = Object.ReferenceEquals(myString1, myString6);
+            #endregion question 184
+
+            #region question 185
+            Group myGroup1 = Group.Supervisors;
+            var isInferior = myGroup1 < Group.Administrators;
+
+            Group myGroup2 = Group.Supervisors | Group.Managers;
+            #endregion question 185
+
+            #region question 189
+            var dateSample = DateTime.Now;
+            var tempSample = 25;
+
+            var sampleText = String.Format(new CultureInfo("en-US"), "Temperature at {0:t} on {0:d}: {1:N2} °C", dateSample, tempSample);
+            #endregion question 189
+
+            #region question 190
+            // cf. https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/linq-to-xml
+            XNamespace ew = "ContactList";
+            XElement root = new XElement(ew + "Root");
+            Console.WriteLine(root);
+
+            using (SchoolDBEntities dbContext = new SchoolDBEntities())
+            {
+                // It's sometimes better to use AsEnumerable than ToList.
+                // For instance (not this case) when the query is done in a add loop
+                XElement contacts = new XElement("contacts",
+                                    //from s in dbContext.Students.ToList()
+                                    from s in dbContext.Students.AsEnumerable()
+                                    orderby s.Id
+                                    select
+                                        new XElement("contact", new XAttribute("contactId", s.Id),
+                                            new XElement("firstName", s.FirstName),
+                                            new XElement("lastName", s.LastName))
+                                    );
+                root.Add(contacts);
+            }
+            #endregion question 190
+
+            #region question 194
+            var sourceFilePath = @"D:\temp\only80bytes.txt";
+            var headerFilePath = @"D:\temp\header.txt";
+            var bodyFilePath = @"D:\temp\body.txt";
+
+            using (FileStream fsource = File.OpenRead(sourceFilePath))
+            using (FileStream fheader = File.OpenWrite(headerFilePath))
+            using (FileStream fbody = File.OpenWrite(bodyFilePath))
+            {
+                byte[] header = new byte[20];
+                byte[] body = new byte[fsource.Length - 20];
+
+                // Read the source file and put the result in the header byte array
+                fsource.Read(header, 0, header.Length);
+
+                // Put the content of the header byte array in the fheader stream (that is, the "header" file)
+                fheader.Write(header, 0, header.Length);
+
+                // Read the source file, continuing at last index, and put the result in the body byte array
+                fsource.Read(body, 0, body.Length);
+
+                // Put the content of the body byte array in the fsource stream (that is, the "body" file)
+                fbody.Write(body, 0, body.Length);
+            }
+
+            #endregion question 194
         }
     }
 
@@ -439,4 +573,15 @@ namespace CertificationTraining
         public string LastName { get; set; }
     }
     #endregion question 102
+
+    #region question 185
+    [Flags]
+    public enum Group
+    {
+        Users = 1,
+        Supervisors = 2,
+        Managers = 4,
+        Administrators = 8
+    }
+    #endregion question 185
 }

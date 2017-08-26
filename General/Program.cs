@@ -5,6 +5,7 @@ using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace General
 {
@@ -54,13 +55,13 @@ namespace General
             #endregion working on reference type
 
             #region struc vs class
-            var myStruct = new TestStruct()
-            {
-                myField = "toto"
-            };
+            //var myStruct = new TestStruct()
+            //{
+            //    myField = "toto"
+            //};
 
             ArrayList myArrayList = new ArrayList();
-            myArrayList.Add(myStruct);
+            //myArrayList.Add(myStruct);
 
             // Pas possible
             //TestStruct? myStructCasted = myArrayList[0] as TestStruct;
@@ -153,6 +154,48 @@ namespace General
             // Create a temporary file
             var tmpFile = Path.GetTempFileName();
             #endregion file manipulation
+
+            #region date
+            string myDateOK = "01/12/17";
+            DateTime.TryParse(myDateOK, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime myDateAsDate1);
+            var isFullDate_myDateAsDate1 = false;
+
+            string myDateKO = "12/17";
+            DateTime.TryParse(myDateKO, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime myDateAsDate2);
+            var isFullDate_myDateAsDate2 = false;
+
+            string myDateOK_2 = "2 décembre 2017";
+            DateTime.TryParse(myDateOK_2, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime myDateAsDate3);
+            var isFullDate_myDateAsDate3 = false;
+
+            string myDateKO_2 = "2 décembre";
+            DateTime.TryParse(myDateKO_2, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime myDateAsDate4);
+            var isFullDate_myDateAsDate4 = false;
+
+            if (myDateAsDate1.Date.GetDateTimeFormats(CultureInfo.InvariantCulture).Contains(myDateOK))
+            {
+                isFullDate_myDateAsDate1 = true;
+            }
+
+            if (myDateAsDate2.Date.GetDateTimeFormats(CultureInfo.InvariantCulture).Contains(myDateKO))
+            {
+                isFullDate_myDateAsDate2 = true;
+            }
+
+            if (myDateAsDate3.Date.GetDateTimeFormats(CultureInfo.InvariantCulture).Contains(myDateOK_2))
+            {
+                isFullDate_myDateAsDate3 = true;
+            }
+
+            //var fullDates = myDateAsDate4.Date.GetDateTimeFormats(CultureInfo.CurrentCulture).Where(date => )
+
+            if (myDateAsDate4.Date.GetDateTimeFormats(CultureInfo.InvariantCulture).Contains(myDateKO_2))
+            {
+                isFullDate_myDateAsDate4 = true;
+            }
+
+            // => isFullDate_myDateAsDate1 = true and isFullDate_myDateAsDate2 = false
+            #endregion date
         }
 
         static void OperateOnString(string myString)
