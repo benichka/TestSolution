@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Dynamic;
@@ -21,6 +22,55 @@ namespace CertificationTraining
     {
         static void Main(string[] args)
         {
+            #region book: blocking collection
+            BlockingCollection<string> col = new BlockingCollection<string>();
+
+            // Always run
+            // Listens for new items to be added to col
+            Task read = Task.Run(() =>
+            {
+                while (true)
+                {
+                    if (!col.IsAddingCompleted)
+                    {
+                        // Block there until some data are available
+                        var s = col.Take();
+                        Console.WriteLine(s);
+
+                        // This code is executed only when a data has just been taken
+                        // from col
+                        Console.WriteLine("an item was taken from col");
+
+                        if (s.Equals("stop"))
+                        {
+                            // If the user enter "stop", the collection must not
+                            // take any other entry
+                            col.CompleteAdding();
+                        } 
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            });
+
+            // Prompt the user to enter something in the line;
+            // is the user doesn't provide a text (if he just hits enter),
+            // the task ends.
+            // Otherwise, the entered text is stored in col
+            Task write = Task.Run(() =>
+            {
+                while (true)
+                {
+                    string s = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(s)) break;
+                    col.Add(s);
+                }
+            });
+            write.Wait();
+            #endregion book: blocking collection
+
             #region question 20
             /*
             var myRunnerList = new Runners();
