@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -10,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
@@ -46,7 +44,7 @@ namespace CertificationTraining
                             // If the user enter "stop", the collection must not
                             // take any other entry
                             col.CompleteAdding();
-                        } 
+                        }
                     }
                     else
                     {
@@ -391,7 +389,7 @@ namespace CertificationTraining
             #endregion question 154
 
             #region question 166
-            decimal[] loanAmounts = { 303m, 1000m, 85579m, 501,51m, 1200m, 400m, 22m };
+            decimal[] loanAmounts = { 303m, 1000m, 85579m, 501, 51m, 1200m, 400m, 22m };
 
             // Good answer
             IEnumerable<decimal> query = from amount in loanAmounts
@@ -520,6 +518,99 @@ namespace CertificationTraining
             }
 
             #endregion question 194
+
+            #region question 203
+            // See https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/knowing-when-to-use-override-and-new-keywords
+
+            // Answer is wrong for the last part
+
+            BaseLogger logger = new Logger();
+            // use the Logger.Log() method -> desired behavior: objects that have values that are created from the derived class
+            // use the methods that are defined in the derived class
+            logger.Log("Log started");
+
+            // use the Logger.Log() method -> same explanation
+            logger.Log("Base: log continuing");
+
+            // WRONG: use the BaseLogger.Log() method -> the "new" keyword hides a member that is inherited from the base class
+            logger.LogCompleted();
+
+            // Correct: use the Logger.LogCompleted() method
+            ((Logger)logger).LogCompleted();
+            #endregion question 203
+
+            #region question 206
+            var connectionStringManual = @"data source=(localdb)\MSSQLLocalDB;initial catalog=SchoolDB;integrated security=True;MultipleActiveResultSets=True;";
+
+            SqlConnection connection = new SqlConnection(connectionStringManual);
+            SqlTransaction transaction = null;
+            SqlCommand command = null;
+
+            try
+            {
+                connection.Open();
+
+                transaction = connection.BeginTransaction(System.Data.IsolationLevel.RepeatableRead);
+                command = new SqlCommand("UPDATE dbo.Student SET LastName = 'Liiu' WHERE LastName = 'Liu'", connection, transaction);
+                var rowsAffected = command.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+            }
+            finally
+            {
+                command?.Dispose();
+                connection.Dispose();
+            }
+
+            // And to do things correctly, with using
+            using (var connectionUsing = new SqlConnection(connectionStringManual))
+            {
+                connectionUsing.Open();
+                using (var transactionUsing = connectionUsing.BeginTransaction(System.Data.IsolationLevel.RepeatableRead))
+                using (var commandUsing = new SqlCommand("UPDATE dbo.Student SET LastName = 'Liu' WHERE LastName = 'Liiu'", connectionUsing, transactionUsing))
+                {
+                    var rowsAffected = commandUsing.ExecuteNonQuery();
+                    transactionUsing.Commit();
+                }
+            }
+            #endregion question 206
+
+            #region question 213
+            var q213Path = @"D:\temp\Q213.xml";
+
+            var rateCollection = new List<Rate>();
+
+            using (var q213FileStream = File.OpenRead(q213Path))
+            using (var xmlReader = XmlReader.Create(q213FileStream))
+            {
+                var usCulture = new CultureInfo("en-us");
+
+                while (xmlReader.ReadToFollowing("rate"))
+                {
+                    var rate = new Rate();
+
+                    xmlReader.MoveToFirstAttribute();
+                    rate.Category = xmlReader.Value;
+
+                    xmlReader.MoveToNextAttribute();
+                    if (DateTime.TryParse(xmlReader.Value, out DateTime rateDate))
+                    {
+                        rate.Date = rateDate;
+                    }
+
+                    xmlReader.ReadToFollowing("value");
+                    if (decimal.TryParse(xmlReader.ReadElementContentAsString(), NumberStyles.Number, usCulture, out decimal rateValue))
+                    {
+                        rate.Value = rateValue;
+                    }
+
+                    rateCollection.Add(rate);
+                }
+            }
+            #endregion question 213
         }
     }
 
@@ -634,4 +725,44 @@ namespace CertificationTraining
         Administrators = 8
     }
     #endregion question 185
+
+    #region question 203
+    // See https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/knowing-when-to-use-override-and-new-keywords
+
+    abstract class BaseLogger
+    {
+        public virtual void Log(string message)
+        {
+            Console.WriteLine("Base: " + message);
+        }
+
+        public void LogCompleted()
+        {
+            Console.WriteLine("Completed");
+        }
+    }
+
+    class Logger : BaseLogger
+    {
+        public override void Log(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public new void LogCompleted()
+        {
+            Console.WriteLine("Finished");
+        }
+    }
+
+    #endregion question 203
+
+    #region question 213
+    class Rate
+    {
+        public string Category { get; set; }
+        public DateTime Date { get; set; }
+        public decimal Value { get; set; }
+    }
+    #endregion question 213
 }

@@ -43,6 +43,19 @@ namespace SQL
                     }
                 }
             }
+
+            // How to use a transaction
+            // -> no need to rollback explicitely, it's done automatically if an exception is thrown
+            using (var connectionUsing = new SqlConnection(connectionStringManual))
+            {
+                connectionUsing.Open();
+                using (var transactionUsing = connectionUsing.BeginTransaction(System.Data.IsolationLevel.RepeatableRead))
+                using (var commandUsing = new SqlCommand("UPDATE dbo.Student SET LastName = 'Liiu' WHERE LastName = 'Liu'", connectionUsing, transactionUsing))
+                {
+                    var rowsAffected = commandUsing.ExecuteNonQuery();
+                    transactionUsing.Commit();
+                }
+            }
         }
     }
 }

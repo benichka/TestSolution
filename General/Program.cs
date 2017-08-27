@@ -11,6 +11,8 @@ namespace General
 {
     class Program
     {
+        public const int SPECIAL_NUMBER = 213;
+
         static void Main(string[] args)
         {
             // Pas possible d'instancier une interface
@@ -196,6 +198,15 @@ namespace General
 
             // => isFullDate_myDateAsDate1 = true and isFullDate_myDateAsDate2 = false
             #endregion date
+
+            #region random stackoverflow question
+            var result = IsSpecialNumberEntered("213");
+            #endregion random stackoverflow question
+        }
+
+        static bool IsSpecialNumberEntered(string numberTextBoxTextValue)
+        {
+            return numberTextBoxTextValue.Equals(SPECIAL_NUMBER.ToString());
         }
 
         static void OperateOnString(string myString)

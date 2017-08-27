@@ -8,6 +8,7 @@ namespace Inheritance
 {
     class Mammal
     {
+        // _name is a private field: it can't be accessed with inheritance
         private string _name;
 
         public Mammal(string name)
