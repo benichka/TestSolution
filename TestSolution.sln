@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "Linq\Linq.csproj", "{64AAD4BF-A968-497A-BB6B-45D6CA8E2BCE}"
 EndProject
@@ -60,6 +60,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadAndCo", "ThreadAndCo\ThreadAndCo.csproj", "{90432D0A-5959-4186-BCE7-8F4D3604DAB0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskAndCo", "TaskAndCo\TaskAndCo.csproj", "{5ED3D408-9123-4D29-A2ED-C4C2DC99AB88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "Delegate\Delegate.csproj", "{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -301,6 +303,14 @@ Global
 		{5ED3D408-9123-4D29-A2ED-C4C2DC99AB88}.TestConfig1|Any CPU.Build.0 = Release|Any CPU
 		{5ED3D408-9123-4D29-A2ED-C4C2DC99AB88}.TestConfig2|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED3D408-9123-4D29-A2ED-C4C2DC99AB88}.TestConfig2|Any CPU.Build.0 = Release|Any CPU
+		{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}.TestConfig1|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}.TestConfig1|Any CPU.Build.0 = Release|Any CPU
+		{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}.TestConfig2|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}.TestConfig2|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
