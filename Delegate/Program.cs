@@ -57,6 +57,13 @@ namespace Delegate
             exec += DisplaySomethingElse;
 
             exec();
+
+            // Simplification: we use anomymous methods
+            Calculate calcAddSimplified = (x, y) => x + y;
+            Console.WriteLine(calcAddSimplified(1, 2));
+
+            Calculate calcMultSimplified = (x, y) => x * y;
+            Console.WriteLine(calcMultSimplified(1, 2));
             #endregion standard things
 
             #region covariance/contravariance
