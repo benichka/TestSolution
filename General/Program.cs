@@ -236,5 +236,10 @@ namespace General
         {
             oneClass = new OneClass { MyProperty1 = 5 };
         }
+
+        public static class TestConstraint<T> where T : class
+        {
+
+        }
     }
 }
