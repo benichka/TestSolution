@@ -6,10 +6,14 @@
         xmlns:local="clr-namespace:WPFTest"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <ResourceDictionary Source="Pages/Dictionary1.xaml" />
+    </Window.Resources>
     <Grid>
         <StackPanel>
             <TextBlock>Hello world</TextBlock>
             <local:MyControl />
+            <Label Content="{StaticResource ResourceButton1}" />
         </StackPanel>
     </Grid>
 </Window>

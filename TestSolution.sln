@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "Linq\Linq.csproj", "{64AAD4BF-A968-497A-BB6B-45D6CA8E2BCE}"
 EndProject
@@ -66,6 +66,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Casting", "Casting\Casting.csproj", "{18F6A6A4-963D-4833-B1DA-93142BF5437C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enumerator", "Enumerator\Enumerator.csproj", "{F12E32AE-DBE5-499D-888E-999FB667DD2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCurrencyConverter", "WpfCurrencyConverter\WpfCurrencyConverter.csproj", "{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -331,6 +333,14 @@ Global
 		{F12E32AE-DBE5-499D-888E-999FB667DD2E}.TestConfig1|Any CPU.Build.0 = Release|Any CPU
 		{F12E32AE-DBE5-499D-888E-999FB667DD2E}.TestConfig2|Any CPU.ActiveCfg = Release|Any CPU
 		{F12E32AE-DBE5-499D-888E-999FB667DD2E}.TestConfig2|Any CPU.Build.0 = Release|Any CPU
+		{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}.TestConfig1|Any CPU.ActiveCfg = Release|Any CPU
+		{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}.TestConfig1|Any CPU.Build.0 = Release|Any CPU
+		{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}.TestConfig2|Any CPU.ActiveCfg = Release|Any CPU
+		{15FE6767-DAC5-4383-8E58-FA3C837C9FA1}.TestConfig2|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
