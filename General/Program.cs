@@ -13,6 +13,8 @@ namespace General
     {
         public const int SPECIAL_NUMBER = 213;
 
+        public delegate int CalcDelegate(int x,int y);
+
         static void Main(string[] args)
         {
             // Pas possible d'instancier une interface
@@ -202,6 +204,8 @@ namespace General
             #region random stackoverflow question
             var result = IsSpecialNumberEntered("213");
             #endregion random stackoverflow question
+
+            TestConstraint<CalcDelegate> testDelegate = new TestConstraint<CalcDelegate>();
         }
 
         static bool IsSpecialNumberEntered(string numberTextBoxTextValue)
@@ -237,7 +241,7 @@ namespace General
             oneClass = new OneClass { MyProperty1 = 5 };
         }
 
-        public static class TestConstraint<T> where T : class
+        public class TestConstraint<T> where T : class
         {
 
         }
