@@ -201,13 +201,13 @@ namespace CertificationTraining
             #endregion question 102
 
             #region question 104
-            /*
             // Correct answer is C, not B
-
+            /*
             Console.Write("Enter unit price:");
             var price = Console.ReadLine();
 
             // B
+            // -> in this context, ^ means "beginning of the line" and not "exclude"
             if(Regex.IsMatch(price, @"^(-)?\d+(\.\d\d)?$"))
             {
                 Console.WriteLine("Valid price (answer B)");
@@ -218,6 +218,7 @@ namespace CertificationTraining
             }
 
             // C
+            // "d" represents a digit, so this means "begin with a digit" -> that excludes "-"
             Regex reg1 = new Regex(@"^\d+(\.\d\d)?$");
             if (reg1.IsMatch(price))
             {
