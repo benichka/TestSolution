@@ -24,17 +24,17 @@ namespace WpfSelectItemInDoubleList.ViewModel
             }
         }
 
-        private TopItem _SelectedItem;
+        private TopItem _SelectedTopItem;
         /// <summary>
         /// Selected top item. Like in the TopItem class, it simplifies a lot the work to do if this is present
         /// in the view model: it's not easy to handle it only in the XAML.
         /// </summary>
-        public TopItem SelectedItem
+        public TopItem SelectedTopItem
         {
-            get { return this._SelectedItem; }
+            get { return this._SelectedTopItem; }
             set
             {
-                SetProperty(ref this._SelectedItem, value);
+                SetProperty(ref this._SelectedTopItem, value);
             }
         }
 
@@ -73,7 +73,7 @@ namespace WpfSelectItemInDoubleList.ViewModel
         /// <param name="topItem">The top item to mark as selected.</param>
         private void SelectTopItem(TopItem topItem)
         {
-            SelectedItem = topItem;
+            SelectedTopItem = topItem;
         }
     }
 }

@@ -33,17 +33,17 @@ namespace WpfSelectItemInDoubleList.Model
             }
         }
 
-        private NestedItem _SelectedItem;
+        private NestedItem _SelectedNestedItem;
         /// <summary>
         /// Selected nested item. It simplifies a lot the work to do if this is present
         /// in the model: it's not easy to handle it only in the XAML.
         /// </summary>
-        public NestedItem SelectedItem
+        public NestedItem SelectedNestedItem
         {
-            get { return this._SelectedItem; }
+            get { return this._SelectedNestedItem; }
             set
             {
-                SetProperty(ref this._SelectedItem, value);
+                SetProperty(ref this._SelectedNestedItem, value);
             }
         }
 

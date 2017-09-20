@@ -27,8 +27,8 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <!-- Initialises the list of top item. We need to bind the SelectedItem property to the SelectedItem of the view model, with Mode=TwoWay. -->
-        <ListView x:Name="TopItemsLV" Grid.Row="0" Margin="10" HorizontalContentAlignment="Stretch" ItemsSource="{Binding TopItems, Mode=TwoWay}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectionMode="Single">
+        <!-- Initialises the list of top item. We need to bind the SelectedItem property to the SelectedTopItem of the view model, with Mode=TwoWay. -->
+        <ListView x:Name="TopItemsLV" Grid.Row="0" Margin="10" HorizontalContentAlignment="Stretch" ItemsSource="{Binding TopItems, Mode=TwoWay}" SelectedItem="{Binding SelectedTopItem, Mode=TwoWay}" SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch">
@@ -38,9 +38,9 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock x:Name="TopNameTB" Grid.Column="0" Text="{Binding TopName}" TextWrapping="Wrap" VerticalAlignment="Center" />
                         <StackPanel Grid.Column="1">
-                            <!-- Display each nested item of the top item. We need to bind the SelectedItem property to the SelectedItem of the top item, with Mode=TwoWay. -->
-                            <!-- Don't get confused: the DataContext here is "TopItem", an element of the TopItems list. So, SelectedItem refers to TopItem.SelectedItem. -->
-                            <ListView x:Name="NestedItemsLV" ItemsSource="{Binding NestedItems, Mode=TwoWay}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" BorderThickness="0" HorizontalAlignment="Center" SelectionMode="Single">
+                            <!-- Display each nested item of the top item. We need to bind the SelectedItem property to the SelectedNestedItem of the top item, with Mode=TwoWay. -->
+                            <!-- Don't get confused: the DataContext here is "TopItem", an element of the TopItems collection. So, SelectedItem refers to the TopItems collection. -->
+                            <ListView x:Name="NestedItemsLV" ItemsSource="{Binding NestedItems, Mode=TwoWay}" SelectedItem="{Binding SelectedNestedItem, Mode=TwoWay}" BorderThickness="0" HorizontalAlignment="Center" SelectionMode="Single">
                                 <!-- The use of interactions is pretty straightforward; here, we plug it to the "GotFocus" event of the ListView. We can plug it to every event of this element. -->
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="GotFocus">
@@ -70,8 +70,8 @@
             </ListView.ItemTemplate>
         </ListView>
         <!-- The access to the selected item of the top items collection is pretty easy. -->
-        <ContentControl Margin="10" Grid.Row="1" Content="{Binding Path=SelectedItem.TopName}" />
+        <ContentControl Margin="10" Grid.Row="1" Content="{Binding Path=SelectedTopItem.TopName}" />
         <!-- Almost as easy for the selected nested item. -->
-        <ContentControl Margin="10" Grid.Row="2" Content="{Binding Path=SelectedItem.SelectedItem.NestedName}" />
+        <ContentControl Margin="10" Grid.Row="2" Content="{Binding Path=SelectedTopItem.SelectedNestedItem.NestedName}" />
     </Grid>
 </Window>
