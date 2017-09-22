@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceCounter", "Perfo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfSelectItemInDoubleList", "WpfSelectItemInDoubleList\WpfSelectItemInDoubleList.csproj", "{74B4D850-504E-4BDC-8530-E0F8480004F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfSetDataContextOnElement", "WpfSetDataContextOnElement\WpfSetDataContextOnElement.csproj", "{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -371,6 +373,14 @@ Global
 		{74B4D850-504E-4BDC-8530-E0F8480004F2}.TestConfig1|Any CPU.Build.0 = Release|Any CPU
 		{74B4D850-504E-4BDC-8530-E0F8480004F2}.TestConfig2|Any CPU.ActiveCfg = Release|Any CPU
 		{74B4D850-504E-4BDC-8530-E0F8480004F2}.TestConfig2|Any CPU.Build.0 = Release|Any CPU
+		{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}.TestConfig1|Any CPU.ActiveCfg = Release|Any CPU
+		{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}.TestConfig1|Any CPU.Build.0 = Release|Any CPU
+		{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}.TestConfig2|Any CPU.ActiveCfg = Release|Any CPU
+		{06BD5669-4266-4D7C-B0FB-F25AFA275CA0}.TestConfig2|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
