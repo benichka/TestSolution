@@ -471,6 +471,8 @@ namespace CertificationTraining
             #endregion question 189
 
             #region question 190
+            /*
+             * fix the db connexion before starting this
             // cf. https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/linq-to-xml
             XNamespace ew = "ContactList";
             XElement root = new XElement(ew + "Root");
@@ -491,6 +493,7 @@ namespace CertificationTraining
                                     );
                 root.Add(contacts);
             }
+            */
             #endregion question 190
 
             #region question 194
@@ -541,6 +544,8 @@ namespace CertificationTraining
             #endregion question 203
 
             #region question 206
+            /*
+             * Fix the database connexion before this
             var connectionStringManual = @"data source=(localdb)\MSSQLLocalDB;initial catalog=SchoolDB;integrated security=True;MultipleActiveResultSets=True;";
 
             SqlConnection connection = new SqlConnection(connectionStringManual);
@@ -577,6 +582,7 @@ namespace CertificationTraining
                     transactionUsing.Commit();
                 }
             }
+            */
             #endregion question 206
 
             #region question 213
@@ -612,6 +618,37 @@ namespace CertificationTraining
                 }
             }
             #endregion question 213
+
+            #region premium, question 61
+            var customer1 = new Customer() { Name = "Customer 1" };
+            var c1_order1 = new Order() { ID = 1, OrderDate = new DateTime(2017, 01, 01) };
+            var c1_order2 = new Order() { ID = 2, OrderDate = new DateTime(2016, 01, 01) };
+
+            customer1.Orders = new List<Order>()
+            {
+                c1_order1,
+                c1_order2
+            };
+
+            var customer2 = new Customer() { Name = "Customer 2" };
+            var c2_order1 = new Order() { ID = 1, OrderDate = new DateTime(2017, 02, 01) };
+            var c2_order2 = new Order() { ID = 2, OrderDate = new DateTime(2016, 02, 01) };
+
+            customer2.Orders = new List<Order>()
+            {
+                c2_order1,
+                c2_order2
+            };
+
+            List<Customer> customers = new List<Customer>()
+            {
+                customer1,
+                customer2
+            };
+
+            // List of customers that have at least one order in the year > 2016
+            var customersWithOrdersSup2016 = customers.Where(c => c.Orders.Any(o => o.OrderDate.Year > 2016)).ToList();
+            #endregion premium, question 61
         }
     }
 
@@ -766,4 +803,50 @@ namespace CertificationTraining
         public decimal Value { get; set; }
     }
     #endregion question 213
+
+    #region premium, question 61
+    internal class Customer
+    {
+        public string Name { get; set; }
+        public List<Order> Orders { get; set; }
+    }
+
+    internal class Order
+    {
+        public int ID { get; set; }
+        public DateTime OrderDate { get; set; }
+    }
+    #endregion premium, question 61
+
+    #region premium, question 111
+    public class Connection
+    {
+        public static Connection Create()
+        {
+            return new Connection();
+        }
+
+        // If we make the only constructor private, Connection cannot be inherited from
+        //private Connection()
+        //{
+
+        //}
+
+        protected Connection()
+        {
+
+        }
+    }
+
+    public class ConnectionInherited : Connection
+    {
+
+    }
+
+    public class SomeRandomClass
+    {
+        // The only way to instanciate a Connection is to use the Create() method.
+        Connection myConnectionVar = Connection.Create();
+    }
+    #endregion premium, question 111
 }

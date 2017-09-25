@@ -33,5 +33,16 @@ namespace SQL.Properties {
                 return ((string)(this["SchoolDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SchoolGradesDB;Integrated Secu" +
+            "rity=True;MultipleActiveResultSets=True;Application Name=EntityFramework")]
+        public string SchoolGradesDBConnectionString {
+            get {
+                return ((string)(this["SchoolGradesDBConnectionString"]));
+            }
+        }
     }
 }

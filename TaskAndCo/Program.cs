@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -227,6 +228,33 @@ namespace TaskAndCo
             Console.WriteLine("Press Enter to exit application");
             Console.ReadLine();
             #endregion book – listing 1-44
+
+            #region book – listing 4-26 : parallel tasks
+            Console.WriteLine("Long task will start after your pressed a key.");
+            Console.ReadKey();
+            Console.WriteLine("Starting long task...");
+            // We can't await a task in main, so we just wait for it to complete...
+            ExecuteMultipleRequestsInParallel().Wait();
+            Console.WriteLine("Long task finished.");
+            Console.ReadKey();
+            #endregion book – listing 4-26 : parallel tasks
         }
+
+        #region book – listing 4-26 : parallel tasks
+        /// <summary>
+        /// This method will parallely launch a list of tasks and wait for them to finish.
+        /// </summary>
+        /// <returns>The task.</returns>
+        public static async Task ExecuteMultipleRequestsInParallel()
+        {
+            HttpClient client = new HttpClient();
+
+            Task<string> microsoft = client.GetStringAsync("http://www.microsoft.com");
+            Task<string> msdn = client.GetStringAsync("http://msdn.microsoft.com");
+            Task<string> blogs = client.GetStringAsync("http://blogs.msdn.com");
+
+            await Task.WhenAll(microsoft, msdn, blogs);
+        }
+        #endregion book – listing 4-26 : parallel tasks
     }
 }

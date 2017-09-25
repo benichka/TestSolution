@@ -33,7 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,28 +51,30 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SchoolDBDataSet.Designer.cs">
+    <Compile Include="SchoolGradesDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolDBDataSet.xsd</DependentUpon>
+      <DependentUpon>SchoolGradesDBDataSet.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="SchoolDBDataSet.xsc">
-      <DependentUpon>SchoolDBDataSet.xsd</DependentUpon>
+    <None Include="SchoolGradesDBDataSet.xsc">
+      <DependentUpon>SchoolGradesDBDataSet.xsd</DependentUpon>
     </None>
-    <None Include="SchoolDBDataSet.xsd">
+    <None Include="SchoolGradesDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SchoolDBDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>SchoolGradesDBDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="SchoolDBDataSet.xss">
-      <DependentUpon>SchoolDBDataSet.xsd</DependentUpon>
+    <None Include="SchoolGradesDBDataSet.xss">
+      <DependentUpon>SchoolGradesDBDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
