@@ -1,0 +1,77 @@
+﻿<Window x:Class="WpfSelectItemInDoubleList.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSelectItemInDoubleList"
+        xmlns:vm="clr-namespace:WpfSelectItemInDoubleList.ViewModel"
+        mc:Ignorable="d"
+        x:Name="ListInListView"
+        Title="List in list" Height="350" Width="525">
+    
+    <!-- We need to give a x:Name to the Window to easily access its view model later. Don't forget it. -->
+
+    <!-- We also need the xmlns:i... namespace to use the interactions. To import this namespace, we need -->
+    <!-- a reference to the System.Windows.Interactivity DLL. -->
+    
+    <!-- Initialises the view model. -->
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <!-- Initialises the list of top item. We need to bind the SelectedItem property to the SelectedTopItem of the view model, with Mode=TwoWay. -->
+        <ListView x:Name="TopItemsLV" Grid.Row="0" Margin="10" HorizontalContentAlignment="Stretch" ItemsSource="{Binding TopItems, Mode=TwoWay}" SelectedItem="{Binding SelectedTopItem, Mode=TwoWay}" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="TopNameTB" Grid.Column="0" Text="{Binding TopName}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        <StackPanel Grid.Column="1">
+                            <!-- Display each nested item of the top item. We need to bind the SelectedItem property to the SelectedNestedItem of the top item, with Mode=TwoWay. -->
+                            <!-- Don't get confused: the DataContext here is "TopItem", an element of the TopItems collection. So, SelectedItem refers to the TopItems collection. -->
+                            <ListView x:Name="NestedItemsLV" ItemsSource="{Binding NestedItems, Mode=TwoWay}" SelectedItem="{Binding SelectedNestedItem, Mode=TwoWay}" BorderThickness="0" HorizontalAlignment="Center" SelectionMode="Single">
+                                <!-- The use of interactions is pretty straightforward; here, we plug it to the "GotFocus" event of the ListView. We can plug it to every event of this element. -->
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="GotFocus">
+                                        <!-- The only difficulty here is to set the good DataContext. We use the data context of "ListInListView", the x:Name we gave to the Window. -->
+                                        <!-- What happen here? The selected item in the top items collection is not set when an item is selected in the nested items collection, -->
+                                        <!-- so we do it with a command. -->
+                                        <i:InvokeCommandAction Command="{Binding ElementName=ListInListView, Path= DataContext.SelectTopItemCommand}" CommandParameter="{Binding}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Background="Transparent" Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding NestedName}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                        <ContentControl Grid.Row="1" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!-- The access to the selected item of the top items collection is pretty easy. -->
+        <ContentControl Margin="10" Grid.Row="1" Content="{Binding Path=SelectedTopItem.TopName}" />
+        <!-- Almost as easy for the selected nested item. -->
+        <ContentControl Margin="10" Grid.Row="2" Content="{Binding Path=SelectedTopItem.SelectedNestedItem.NestedName}" />
+    </Grid>
+</Window>
