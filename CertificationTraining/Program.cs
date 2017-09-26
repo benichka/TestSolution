@@ -8,6 +8,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -649,6 +651,60 @@ namespace CertificationTraining
             // List of customers that have at least one order in the year > 2016
             var customersWithOrdersSup2016 = customers.Where(c => c.Orders.Any(o => o.OrderDate.Year > 2016)).ToList();
             #endregion premium, question 61
+
+            #region premium, question 208
+            IFormatter binarySer = new BinaryFormatter();
+            var myClass1 = new Class1("one value");
+            var myClass2 = new Class2(new List<string>() { "string 1", "string 2" });
+
+            // Exception: Class1 is not mark as serializable
+            //using (var myClass1AsMS = new MemoryStream())
+            //{
+            //    binarySer.Serialize(myClass1AsMS, myClass1);
+            //    myClass1AsMS.Seek(0, SeekOrigin.Begin);
+            //    var myClass1Reconstructed = binarySer.Deserialize(myClass1AsMS) as Class1;
+            //}
+
+            // Exception: Class2 is not mark as serializable
+            //using (var myClass2AsMS = new MemoryStream())
+            //{
+            //    binarySer.Serialize(myClass2AsMS, myClass2);
+            //    myClass2AsMS.Seek(0, SeekOrigin.Begin);
+            //    var myClass2Reconstructed = binarySer.Deserialize(myClass2AsMS) as Class2;
+            //}
+
+            var dcSerClass1 = new DataContractJsonSerializer(typeof(Class1));
+            var dcSerClass2 = new DataContractJsonSerializer(typeof(Class2));
+            using (var myClass1AsMS = new MemoryStream())
+            {
+                dcSerClass1.WriteObject(myClass1AsMS, myClass1);
+                myClass1AsMS.Seek(0, SeekOrigin.Begin);
+                var myClass1Reconstructed = dcSerClass1.ReadObject(myClass1AsMS);
+            }
+
+            using (var myClass2AsMS = new MemoryStream())
+            {
+                dcSerClass2.WriteObject(myClass2AsMS, myClass2);
+                myClass2AsMS.Seek(0, SeekOrigin.Begin);
+                var myClass2Reconstructed = dcSerClass2.ReadObject(myClass2AsMS);
+            }
+            #endregion premium, question 208
+
+            #region premium, question 210
+            Department[] departments =
+            {
+                new Department { Id = 1, Name = "Acccounting", Manager = "User1", BuildingId = 15} ,
+                new Department { Id = 2, Name = "Sales", Manager = "User2", BuildingId = 3 },
+                new Department { Id = 3, Name = "IT", Manager = "User3", BuildingId = 15 },
+                new Department { Id = 4, Name = "Marketing", Manager = "User4", BuildingId = 3 }
+            };
+
+            var output = from Department d in departments
+                         group d by d.BuildingId into dp
+                         select new { sorted = dp.Key, Department = dp };
+
+            string outputType = output.GetType().ToString();
+            #endregion premium, question 210
         }
     }
 
@@ -849,4 +905,57 @@ namespace CertificationTraining
         Connection myConnectionVar = Connection.Create();
     }
     #endregion premium, question 111
+
+    #region premium, question 208
+    [DataContract]
+    public class Class1
+    {
+        string oneValue;
+
+        [DataMember]
+        public string OneValue
+        {
+            get { return oneValue; }
+            set { oneValue = value; }
+        }
+
+        public Class1(string _oneValue)
+        {
+            oneValue = _oneValue;
+        }
+    }
+
+    [DataContract]
+    public class Class2
+    {
+        List<string> values;
+
+        [DataMember]
+        public List<string> Values
+        {
+            get { return values; }
+            set { values = value; }
+        }
+
+        public Class2(List<string> _values)
+        {
+            values = _values;
+        }
+
+        public Class2()
+        {
+
+        }
+    }
+    #endregion premium, question 208
+
+    #region premium, question 210
+    public class Department
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Manager { get; set; }
+        public int BuildingId { get; set; }
+    }
+    #endregion premium, question 210
 }
