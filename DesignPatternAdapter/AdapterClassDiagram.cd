@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DesignPatternAdapter.Adapters.LegacyCarToNewCarAdapter">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAhCAAAAQABAAAAAAAAAQA=</HashCode>
+      <FileName>Adapters\LegacyCarToNewCarAdapter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_legacyCar" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Left" Position="0.362" />
+  </Class>
+  <Class Name="DesignPatternAdapter.LegacyCar">
+    <Position X="6.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAgAAACAAAAAAAAAIAQAAAAAAAAAAAAAQBAAAAAAAgE=</HashCode>
+      <FileName>LegacyCar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DesignPatternAdapter.NewCar">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAJCCAAAQABBAAAAAAAAQA=</HashCode>
+      <FileName>NewCar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DesignPatternAdapter.ILegacyCar">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAgAAACAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAgE=</HashCode>
+      <FileName>ILegacyCar.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DesignPatternAdapter.INewCar">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAABCAAAAQABAAAAAAAAAQA=</HashCode>
+      <FileName>INewCar.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

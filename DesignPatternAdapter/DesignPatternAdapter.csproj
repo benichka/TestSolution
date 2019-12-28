@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BCBD44A4-FF7E-4C8C-8421-A469A0B3F173}</ProjectGuid>
+    <ProjectGuid>{416551AB-5BB7-4260-AE20-2255D3B28055}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Delegate</RootNamespace>
-    <AssemblyName>Delegate</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>DesignPatternAdapter</RootNamespace>
+    <AssemblyName>DesignPatternAdapter</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,11 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\LegacyCarToNewCarAdapter.cs" />
+    <Compile Include="ILegacyCar.cs" />
+    <Compile Include="INewCar.cs" />
+    <Compile Include="LegacyCar.cs" />
+    <Compile Include="NewCar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="AdapterClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
